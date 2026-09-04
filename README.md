@@ -1,6 +1,7 @@
-# system-design-docs
+# SRE Docs
 
-Design Doc templates for SRE / DevOps / Infrastructure / Systems work.
+Templates for the documents an SRE / DevOps / infrastructure team writes: design docs, runbooks,
+postmortems, SLO definitions, ADRs, and the checklists that gate a launch or a handover.
 
 Infrastructure changes rarely fail on *what* was built. They fail on *why it was shaped that way*.
 A diagram and a configuration diff leave no record of the alternatives that were weighed, and no answer
@@ -20,6 +21,7 @@ reasoning in writing before implementation, get it reviewed, and keep it readabl
 | Capacity planning, cost optimization | [templates/06-capacity-cost.md](templates/06-capacity-cost.md) |
 | A single technical decision, recorded lightly (one page) | [templates/07-adr.md](templates/07-adr.md) |
 | Incident retrospectives | [templates/08-postmortem.md](templates/08-postmortem.md) |
+| What the on-call does when an alert fires | [templates/10-runbook.md](templates/10-runbook.md) |
 | Handing operations of a system, platform, or SaaS to another team and enabling them to run it | [templates/09-operations-handover.md](templates/09-operations-handover.md) |
 | Pre-production review | [checklists/production-readiness.md](checklists/production-readiness.md) |
 | Final gate before handing over operations | [checklists/operational-readiness.md](checklists/operational-readiness.md) |
@@ -29,6 +31,10 @@ the plan — who takes what, how the receiving team gets there, and when the han
 back. The checklist is the gate you run at the end of that plan. For a small handover where the
 receiving team already runs something similar and every task is procedural, skip the template and
 run the checklist alone.
+
+Design docs, runbooks and postmortems form a loop. The design doc says what should happen and
+names the failure modes. The runbook says what the on-call does when one of them happens. The
+postmortem records what actually happened and feeds fixes back into both. Link them to each other.
 
 Worked examples live in [examples/](examples/).
 
@@ -113,8 +119,18 @@ frameworks layered in as the cross-cutting section.
 - [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/)
 - [Disaster recovery planning guide](https://cloud.google.com/architecture/dr-scenarios-planning-guide) — how to set RTO and RPO
 
+### On-call and runbooks
+
+- [Effective Troubleshooting](https://sre.google/sre-book/effective-troubleshooting/) — the diagnose / test / treat loop a runbook should support
+- [Being On-Call](https://sre.google/sre-book/being-on-call/) — what the person reading a runbook is going through
+- [PagerDuty Incident Response documentation](https://response.pagerduty.com/) — a complete, public incident-response process, including communication templates
+
 ### Architecture Decision Records
 
 - [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) — Michael Nygard's original ADR post
 - [Architecture decision records (Google Cloud)](https://cloud.google.com/architecture/architecture-decision-records)
 - [adr.github.io](https://adr.github.io/) / [a collection of ADR templates](https://github.com/joelparkerhenderson/architecture-decision-record)
+
+## License
+
+[MIT](LICENSE). Copy the templates into your own repositories and change whatever does not fit.
